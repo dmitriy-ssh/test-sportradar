@@ -22,7 +22,8 @@ export class Match implements IMatch {
   readonly startTime: Date;
 
   public setScore(homeScore: number, awayScore: number): void {
-    return;
+    this._homeScore = Math.abs(homeScore);
+    this._awayScore = Math.abs(awayScore);
   }
 
   constructor(

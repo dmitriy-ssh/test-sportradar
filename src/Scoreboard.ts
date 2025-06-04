@@ -2,21 +2,22 @@ import { IMatch, IScoreboard, ITeam } from "./interface";
 
 export class Scoreboard implements IScoreboard {
   readonly id: Symbol;
-  private _matches: IMatch[];
+  private _matches: Set<IMatch>;
 
   public get matches(): ReadonlyArray<IMatch> {
-    return this._matches;
+    return Array.from(this._matches);
   }
 
   startMatch(match: IMatch): void {
-    return;
+    this._matches.add(match);
   }
+
   finishMatch(match: IMatch): void {
-    return;
+    this._matches.delete(match);
   }
 
   constructor() {
     this.id = Symbol();
-    this._matches = [];
+    this._matches = new Set<IMatch>();
   }
 }

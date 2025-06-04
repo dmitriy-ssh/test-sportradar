@@ -1,6 +1,7 @@
+import { SummaryByTotalScore } from "../src";
 import { IMatch, IScoreboard } from "../src/interface";
 
-function createMockSummary(matches: IMatch[]): IScoreboard {
+function createMockScoreboard(matches: IMatch[]): IScoreboard {
   return {
     id: Symbol(),
     matches: matches,
@@ -30,9 +31,11 @@ function createMockMatch(
 describe("SummaryByTotalScore", () => {
   it("should return an empty summary for no matches", () => {
     const matches: IMatch[] = [];
-    const summary = createMockSummary(matches);
+    const scoreboard = createMockScoreboard(matches);
 
-    expect(summary.matches.length).toBe(0);
+    const summary = new SummaryByTotalScore().getSummary(scoreboard);
+
+    expect(summary.length).toBe(0);
   });
 
   it("should return correct summary for matches by total score with same datetime", () => {
@@ -42,10 +45,11 @@ describe("SummaryByTotalScore", () => {
       createMockMatch("Team C", "Team D", 1, 1, date),
       createMockMatch("Team E", "Team F", 1, 4, date),
     ];
-    const summary = createMockSummary(matches);
+    const scoreboard = createMockScoreboard(matches);
 
-    expect(summary.matches.length).toBe(3);
-    expect(summary.matches).toStrictEqual([
+    const summary = new SummaryByTotalScore().getSummary(scoreboard);
+
+    expect(summary).toStrictEqual([
       "Team A 2 - Team B 4",
       "Team E 1 - Team F 4",
       "Team C 1 - Team D 1",
@@ -90,15 +94,16 @@ describe("SummaryByTotalScore", () => {
         new Date("2024-12-12T12:00:00Z")
       ),
     ];
-    const summary = createMockSummary(matches);
+    const scoreboard = createMockScoreboard(matches);
 
-    expect(summary.matches.length).toBe(5);
-    expect(summary.matches).toStrictEqual([
+    const summary = new SummaryByTotalScore().getSummary(scoreboard);
+
+    expect(summary).toStrictEqual([
       "Team I 6 - Team J 6",
       "Team A 2 - Team B 4",
       "Team G 1 - Team H 1",
-      "Team E 1 - Team F 1",
       "Team C 1 - Team D 1",
+      "Team E 1 - Team F 1",
     ]);
   });
 });

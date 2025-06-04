@@ -32,6 +32,25 @@ describe("Scoreboard", () => {
     expect(scoreboard.matches[0].awayScore).toBe(4);
   });
 
+  it("should not start a match multiple times", () => {
+    const scoreboard = new Scoreboard();
+
+    const match: IMatch = {
+      id: Symbol(),
+      homeTeam: { id: Symbol(), name: "Home Team" },
+      awayTeam: { id: Symbol(), name: "Away Team" },
+      homeScore: 1,
+      awayScore: 4,
+      startTime: new Date(),
+      setScore: jest.fn(),
+    };
+
+    scoreboard.startMatch(match);
+    scoreboard.startMatch(match);
+
+    expect(scoreboard.matches.length).toBe(1);
+  });
+
   it("should correctly finish a match", () => {
     const scoreboard = new Scoreboard();
 
