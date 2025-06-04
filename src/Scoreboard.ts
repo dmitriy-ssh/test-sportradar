@@ -8,7 +8,7 @@ export class Scoreboard implements IScoreboard {
     return this._matches;
   }
 
-  startMatch(homeTeam: ITeam, awayTeam: ITeam, startTime: Date): void {
+  startMatch(match: IMatch): void {
     return;
   }
   finishMatch(match: IMatch): void {

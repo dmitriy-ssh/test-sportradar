@@ -30,7 +30,7 @@ export class Match implements IMatch {
     awayTeam: ITeam,
     homeScore: number,
     awayScore: number,
-    startTime: Date = new Date()
+    startTime: Date
   ) {
     this.id = Symbol();
     this.homeTeam = homeTeam;
