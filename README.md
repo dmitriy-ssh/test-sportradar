@@ -45,7 +45,7 @@ scoreboard.matches[0].setScore(1, 2);
 //Get the current summary of the match
 const summary = scoreboard.getDefaultSummary();
 //OR
-new SummaryByTotalScore().getSummary(scoreboard.matches);
+new SummaryByTotalScore().getSummary(scoreboard);
 
 //Remove the match from the scoreboard
 scoreboard.finishMatch(match);
@@ -54,5 +54,5 @@ scoreboard.finishMatch(match);
 
 ## Notes and assumptions
 
-- I decided to use startTime property in matches for summary sorting. It may not be required depending on the requirement interpretation.
-- The matches are created manually before adding them to scoreboard. I think this is a good opportunity to use factory method or class, but I didn't add them to keep everything simple, as for now it is not required.
+- I decided to use the startTime property in matches for summary sorting if the total score is the same. This may not be required depending on how the requirement is interpreted.
+- The matches are created manually before being added to the scoreboard. I think this is a good opportunity to use a factory method or class, but I didn’t add them to keep everything simple, as it is not required for now.
