@@ -1,7 +1,14 @@
-import { IMatch, IScoreboard, ITeam } from "./interface";
+import {
+  IMatch,
+  IScoreboard,
+  ISummaryStarategy,
+  ITeam,
+  Summary,
+} from "./interface";
 
 export class Scoreboard implements IScoreboard {
   readonly id: Symbol;
+  readonly defaultSummaryStrategy: ISummaryStarategy | null = null;
   private _matches: Set<IMatch>;
 
   public get matches(): ReadonlyArray<IMatch> {
@@ -16,8 +23,13 @@ export class Scoreboard implements IScoreboard {
     this._matches.delete(match);
   }
 
-  constructor() {
+  constructor(summaryStrategy: ISummaryStarategy | null = null) {
     this.id = Symbol();
     this._matches = new Set<IMatch>();
+    this.defaultSummaryStrategy = summaryStrategy;
+  }
+
+  getDefaultSummary(): Summary {
+    return this?.defaultSummaryStrategy?.getSummary(this) || [];
   }
 }

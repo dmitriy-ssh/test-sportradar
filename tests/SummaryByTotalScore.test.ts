@@ -7,6 +7,7 @@ function createMockScoreboard(matches: IMatch[]): IScoreboard {
     matches: matches,
     startMatch: jest.fn(),
     finishMatch: jest.fn(),
+    getDefaultSummary: jest.fn(),
   };
 }
 

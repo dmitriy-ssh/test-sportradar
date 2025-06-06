@@ -1,6 +1,6 @@
-import { IMatch, IScoreboard, ISummary } from "./interface";
+import { IMatch, IScoreboard, ISummaryStarategy } from "./interface";
 
-export class SummaryByTotalScore implements ISummary {
+export class SummaryByTotalScore implements ISummaryStarategy {
   private getMatchSummary(match: IMatch): string {
     return `${match.homeTeam.name} ${match.homeScore} - ${match.awayTeam.name} ${match.awayScore}`;
   }

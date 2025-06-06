@@ -99,4 +99,16 @@ describe("Scoreboard", () => {
 
     expect(scoreboard.matches.length).toBe(1);
   });
+
+  it("should use summary strategy if provided", () => {
+    const mockSummaryStrategy = {
+      getSummary: jest.fn().mockReturnValue(["mock"]),
+    };
+    const scoreboard = new Scoreboard(mockSummaryStrategy);
+
+    const summary = scoreboard.getDefaultSummary();
+
+    expect(summary).toEqual(["mock"]);
+    expect(mockSummaryStrategy.getSummary).toHaveBeenCalledWith(scoreboard);
+  });
 });
