@@ -1,5 +1,5 @@
 {
-  "name": "test-sportradar",
+  "name": "test-task-sport-library",
   "version": "0.0.1",
   "description": "Library for live scoreboard",
   "main": "dist/index.js",
